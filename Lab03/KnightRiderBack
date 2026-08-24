@@ -1,0 +1,44 @@
+module KnightRiderBack(input CLOCK_50, output [9:0] LEDR);
+
+  reg [25:0] count = 26'd0;
+
+  wire [9:0] ms;
+  assign ms = count / 50_000;
+
+
+  assign LEDR[0] = (ms < 50) ||
+                   ((950 <= ms) && (ms < 1000));
+
+  assign LEDR[1] = ((50 <= ms) && (ms < 100)) ||
+                   ((900 <= ms) && (ms < 950));
+
+  assign LEDR[2] = ((100 <= ms) && (ms < 150)) ||
+                   ((850 <= ms) && (ms < 900));
+
+  assign LEDR[3] = ((150 <= ms) && (ms < 200)) ||
+                   ((800 <= ms) && (ms < 850));
+
+  assign LEDR[4] = ((200 <= ms) && (ms < 250)) ||
+                   ((750 <= ms) && (ms < 800));
+
+  assign LEDR[5] = ((250 <= ms) && (ms < 300)) ||
+                   ((700 <= ms) && (ms < 750));
+
+  assign LEDR[6] = ((300 <= ms) && (ms < 350)) ||
+                   ((650 <= ms) && (ms < 700));
+
+  assign LEDR[7] = ((350 <= ms) && (ms < 400)) ||
+                   ((600 <= ms) && (ms < 650));
+
+  assign LEDR[8] = ((400 <= ms) && (ms < 450)) ||
+                   ((550 <= ms) && (ms < 600));
+
+  assign LEDR[9] = ((450 <= ms) && (ms < 550));
+
+  always @(posedge CLOCK_50)
+    if (count < 26'd50_000_000)
+      count <= count + 1'd1;
+    else
+      count <= 1'd0;
+
+endmodule
