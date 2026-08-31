@@ -56,13 +56,16 @@ module Detect110011(
                S5 = 3'd5,
                S6 = 3'd6;
 
+	//states
     reg [2:0] state = S0;
     reg [2:0] next_state;
-
+	 
+	//Flip-Flop / State Update (current state ← next state)
     always @(posedge clk)
         if (enable)
             state <= next_state;
-
+				
+	//Next-State Logic (calculate current state + current input)
     always @(*) begin
         case (state)
 
@@ -78,7 +81,8 @@ module Detect110011(
 
         endcase
     end
-
+	 
+	//Output Logic (Moore FSM since output only depends on state)
     assign found = (state == S6);
 
 endmodule
