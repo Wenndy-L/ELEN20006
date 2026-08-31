@@ -48,13 +48,13 @@ module Detect110011(
     output found
 );
 
-    localparam S0 = 3'b000,
-               S1 = 3'b001,
-               S2 = 3'b010,
-               S3 = 3'b011,
-               S4 = 3'b100,
-               S5 = 3'b101,
-               S6 = 3'b110;
+    localparam S0 = 3'd0,
+               S1 = 3'd1,
+               S2 = 3'd2,
+               S3 = 3'd3,
+               S4 = 3'd4,
+               S5 = 3'd5,
+               S6 = 3'd6;
 
     reg [2:0] state = S0;
     reg [2:0] next_state;
