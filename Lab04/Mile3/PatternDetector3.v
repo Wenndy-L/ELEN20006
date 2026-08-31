@@ -53,9 +53,16 @@ module SR6(
 
     initial out = 6'b000000;
 
-    always @(posedge clk)
-        if (enable)
-            out <= {out[4:0], in};
+    always @(posedge clk) begin
+        if (enable) begin
+            out[5] <= out[4];
+            out[4] <= out[3];
+            out[3] <= out[2];
+            out[2] <= out[1];
+            out[1] <= out[0];
+            out[0] <= in;
+        end
+    end
 
 endmodule
 
