@@ -61,6 +61,7 @@ module SR6(
             out[2] <= out[1];
             out[1] <= out[0];
             out[0] <= in;
+            //out <= {out[4:0], in};
         end
     end
 
